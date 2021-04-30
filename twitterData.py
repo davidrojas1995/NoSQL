@@ -4,7 +4,7 @@ import pymongo as pymo
 import pandas as pd
 
 
-#ompletar datos de consumer_key, consumer_secret, access_token, access_token_secret
+#Completar datos de consumer_key, consumer_secret, access_token, access_token_secret
 
 consumer_key= '' 
 consumer_secret= ''
@@ -16,13 +16,13 @@ auth.set_access_token(access_token, access_token_secret)
 api = tw.API(auth, wait_on_rate_limit=True)
 
 
-# Define the search term and the date_since as user input variables
+# Definir los criterios de busqueda
 search_words = input("Palabra clave:")
 date_since = input("Desde fecha (aaaa-mm-dd):")
 date_until = input("Hasta fecha (aaaa-mm-dd):")
 tweet_count = input("Cantidad maxima de Tweets a obtener:")
 
-# Collect tweets
+# Guardar tweets
 tweets = tw.Cursor(api.search,
               q=search_words + " -filter:retweets",
              #define language lang="en",
@@ -43,11 +43,10 @@ for tweet in tweets:
     x = mycol.insert_one(mydict)
     
     
-   # print(x)
     
 mongo_docs = mycol.find()
 
-    # Convert the mongo docs to a DataFrame
+    # Convertir de mongo docs a DataFrame
 docs = pd.DataFrame(mongo_docs)
 
 docs.pop("_id")
