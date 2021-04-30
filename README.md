@@ -1,2 +1,0 @@
-# NoSQL
-Curso NoSQL II 2020
